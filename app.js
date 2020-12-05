@@ -10,5 +10,6 @@ app.use(express.urlencoded({extended: false}));
 
 //routes
 app.use('/api/category',require('./src/routes/category.routes'));
+app.use('/api/user',require('./src/routes/user.routes'));
 
 module.exports = app;

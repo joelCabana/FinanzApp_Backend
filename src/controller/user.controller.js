@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const User = require('./category.controller');
 const userCtrl = {};
 
 userCtrl.getUsers = async(req,res)=>{
