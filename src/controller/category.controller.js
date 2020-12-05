@@ -24,7 +24,7 @@ categoryCtrl.deleteCategory = async(req,res)=>{
 }
 
 categoryCtrl.updateCategory = async(req,res)=>{
-    await Category.findByIdAndUpdate(req.params.id,req,body);
+    await Category.findByIdAndUpdate(req.params.id,req.body);
     res.send({message:'Category Updated'})
 }
 
