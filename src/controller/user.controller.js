@@ -18,7 +18,7 @@ userCtrl.createUser = async(req,res)=>{
     res.send({message:'User Created'});
 }
 
-userCtrl.update = async(req,res)=>{
+userCtrl.updateUser = async(req,res)=>{
     await User.findByIdAndUpdate(req.params.id,req.body);
     res.send({message:'User Updated'});
 }
@@ -27,3 +27,6 @@ userCtrl.deleteUser = async(req,res)=>{
     await User.findByIdAndDelete(req.params.id);
     res.send({message:'User Deleted'});
 }
+
+
+module.exports = userCtrl;
