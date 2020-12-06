@@ -1,3 +1,4 @@
+const user = require('../models/user');
 const User = require('../models/user');
 const userCtrl = {};
 
@@ -25,6 +26,29 @@ userCtrl.updateUser = async(req,res)=>{
 userCtrl.deleteUser = async(req,res)=>{
     await User.findByIdAndDelete(req.params.id);
     res.send({message:'User Deleted'});
+}
+
+userCtrl.loginUser = async(req, res) => {
+    const criteria = {
+            email: req.body.email,
+            password: req.body.password
+        }
+    User.findOne(criteria, function(err, user) {
+        if (err) {
+            res.json({
+                status: 0,
+                message: 'error'
+            })
+        };
+        if (!user) {
+            res.json({
+                status: 0,
+                message: "not found"
+            })
+        } else {
+            res.json(user);
+        }
+    })
 }
 
 
