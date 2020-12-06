@@ -46,7 +46,14 @@ userCtrl.loginUser = async(req, res) => {
                 message: "not found"
             })
         } else {
-            res.json(user);
+            res.json({
+                status: 1,
+                message: "success",
+                _id: user._id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+            });
         }
     })
 }
