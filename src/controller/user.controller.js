@@ -3,7 +3,7 @@ const User = require('../models/user');
 const userCtrl = {};
 
 userCtrl.getUsers = async(req,res)=>{
-    const users = await User.find();
+    const users = await User.find().populate("operation.category");
     res.json(users);
 }
 
