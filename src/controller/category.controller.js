@@ -3,7 +3,7 @@ const Category = require('../models/category');
 const categoryCtrl = {}
 
 categoryCtrl.getCategories = async(req,res)=>{
-    const categories = await Category.find();
+    const categories = await Category.find().sort({name: "asc"});
     res.json(categories); 
 }
 

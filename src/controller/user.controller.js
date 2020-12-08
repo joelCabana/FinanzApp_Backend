@@ -1,4 +1,4 @@
-const user = require('../models/user');
+
 const User = require('../models/user');
 const userCtrl = {};
 
@@ -8,7 +8,7 @@ userCtrl.getUsers = async(req,res)=>{
 }
 
 userCtrl.getUser = async(req,res)=>{
-    const user = await User.findById(req.params.id).populate("operation.category");
+    const user = await User.findById(req.params.id,{password:0}).populate("operation.category");
     res.send(user);
 }
 
