@@ -8,14 +8,35 @@ userCtrl.getUsers = async(req,res)=>{
 }
 
 userCtrl.getUser = async(req,res)=>{
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate("operation.category");
     res.send(user);
 }
 
 userCtrl.createUser = async(req,res)=>{
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.send({message:'User Created'});
+    
+    const criteria = {
+        email: req.body.email
+    };
+    User.findOne(criteria,async function(err, user){
+        //En caso de error
+        if(err){
+            res.json({
+                status: 0,
+                message: 'error'
+            })
+        }
+        if(!user) {
+            const newUser = new User(req.body);
+            await newUser.save();
+            res.send({message:'User Created'});
+        }
+        else{
+            res.json({
+                status: 1,
+                message: "exits"
+            })
+        }
+    })
 }
 
 userCtrl.updateUser = async(req,res)=>{
