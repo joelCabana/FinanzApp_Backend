@@ -2,11 +2,12 @@ const {Router} = require('express');
 const router = Router();
 const categoryCtrl = require('../controller/category.controller');
 
+const autCtrl = require('./../controllers/auth.controller');
 
-router.get('/',categoryCtrl.getCategories);
-router.get('/:id',categoryCtrl.getCategory);
-router.post('/',categoryCtrl.createCategory);
-router.put('/:id',categoryCtrl.updateCategory);
-router.delete('/:id',categoryCtrl.deleteCategory);
+router.get('/',autCtrl.verifyToken,categoryCtrl.getCategories);
+router.get('/:id',autCtrl.verifyToken,categoryCtrl.getCategory);
+router.post('/',autCtrl.verifyToken,categoryCtrl.createCategory);
+router.put('/:id',autCtrl.verifyToken,categoryCtrl.updateCategory);
+router.delete('/:id',autCtrl.verifyToken,categoryCtrl.deleteCategory);
 
 module.exports = router;

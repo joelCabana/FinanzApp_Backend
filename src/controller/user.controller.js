@@ -1,6 +1,6 @@
-
 const User = require('../models/user');
 const userCtrl = {};
+const jwt = require('jsonwebtoken');
 
 userCtrl.getUsers = async(req,res)=>{
     const users = await User.find().populate("operation.category");
@@ -67,13 +67,15 @@ userCtrl.loginUser = async(req, res) => {
                 message: "not found"
             })
         } else {
+            const unToken = jwt.sign({id: user._id}, "secretkey");
             res.json({
                 status: 1,
                 message: "success",
                 _id: user._id,
                 first_name: user.first_name,
                 last_name: user.last_name,
-                email: user.email
+                email: user.email,
+                token: unToken
             });
         }
     })
