@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const categoryCtrl = require('../controller/category.controller');
 
-const autCtrl = require('./../controllers/auth.controller');
+const autCtrl = require('../controller/auth.controller');
 
 router.get('/',autCtrl.verifyToken,categoryCtrl.getCategories);
 router.get('/:id',autCtrl.verifyToken,categoryCtrl.getCategory);

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/finanzapp',{
+mongoose.connect('mongodb+srv://joelxcabana:41609331@cluster0.oxd3a.mongodb.net/DB_FINANZAPP?retryWrites=true&w=majority',{
     useUnifiedTopology: true,
     useNewUrlParser: true
 })
